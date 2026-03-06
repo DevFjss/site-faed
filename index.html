@@ -160,100 +160,111 @@
     </form>
   </div>
 
-  <script>
-    function formatarCPF(campo) {
-      var valor = campo.value.replace(/\D/g, '');
-      if (valor.length > 3) {
-        valor = valor.replace(/^(\d{3})(\d)/g, "$1.$2");
-      }
-      if (valor.length > 6) {
-        valor = valor.replace(/^(\d{3})\.(\d{3})(\d)/g, "$1.$2.$3");
-      }
-      if (valor.length > 9) {
-        valor = valor.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/g, "$1.$2.$3-$4");
-      }
-      campo.value = valor;
-      }
+ <script>
 
-    function formatarData(campo) {
-      var valor = campo.value.replace(/\D/g, '');
-      if (valor.length > 2) {
-        valor = valor.replace(/^(\d{2})(\d)/g, "$1/$2");
-      }
-      if (valor.length > 4) {
-        valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/g, "$1/$2/$3");
-      }
-      campo.value = valor;
-    }
-  
-    function limitarEntrada(campo) {
-      var valor = campo.value;
-      if (valor.length > 7) {
-        campo.value = valor.substring(0, 7);
-      }
-    }
-    
-     function limparCampos() {
-      document.getElementById("nte").value = '';
-      document.getElementById("municipio").value = '';
-      document.getElementById("codigoSec").value = '';
-      document.getElementById("unidadeEscolar").value = '';
-      document.getElementById("nomeDiretor").value = '';
-      document.getElementById("cpf").value = '';
-      document.getElementById("matricula").value = '';
-      document.getElementById("dataNascimento").value = '';
-      document.getElementById("dataPublicacao").value = '';
-      document.getElementById("emailDiretor").value = '';
-      document.getElementById("telefoneDiretor").value = '';
-      document.getElementById("emailNte").value = '';
-      document.getElementById("telefoneNte").value = '';
-      document.getElementById("observacoes").value = '';
-      var checkboxes = document.querySelectorAll('input[name="solicitacao"]');
-      checkboxes.forEach(function(checkbox) {
-        checkbox.checked = false;
-      });
-    }
+function formatarCPF(campo){
+let valor=campo.value.replace(/\D/g,'');
 
-    function enviarDados() {
-      var form = document.getElementById("form");
-      if (!form.checkValidity()) {
-        document.getElementById("resultado").innerText = "Por favor, preencha todos os campos obrigatórios.";
-        return false;
-      }
+if(valor.length>3) valor=valor.replace(/^(\d{3})(\d)/,"$1.$2");
+if(valor.length>6) valor=valor.replace(/^(\d{3})\.(\d{3})(\d)/,"$1.$2.$3");
+if(valor.length>9) valor=valor.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/,"$1.$2.$3-$4");
 
-      // Coletar os valores das caixas de seleção marcadas
-const checkedValues = Array.from(document.querySelectorAll('input[name="solicitacao"]:checked'))
-  .map(checkbox => checkbox.value)
-  .join(', '); // Você pode usar outro separador se preferir
+campo.value=valor;
+}
 
-// Enviar os dados para o Google Apps Script
-      google.script.run.withSuccessHandler(function(response) {
-        document.getElementById("resultado").innerText = "Dados enviados com sucesso!";
-        setTimeout(function() {
-          document.getElementById("resultado").innerText = ""; // Limpar mensagem após 3 segundos
-        }, 3000);
-        limparCampos(); // Limpar campos após o envio
-      }).salvarDados(
-        document.getElementById("nte").value,
-        document.getElementById("municipio").value,
-        document.getElementById("codigoSec").value,
-        document.getElementById("unidadeEscolar").value,
-        document.getElementById("nomeDiretor").value,
-        document.getElementById("cpf").value,
-        document.getElementById("matricula").value,
-        document.getElementById("dataNascimento").value,
-        document.getElementById("dataPublicacao").value,
-        document.getElementById("emailDiretor").value,
-        document.getElementById("telefoneDiretor").value,
-        document.getElementById("emailNte").value,
-        document.getElementById("telefoneNte").value,
-        checkedValues,
-        document.getElementById("observacoes").value
-      );
-      
-      return false; // Para prevenir o envio do formulário padrão
-    }
-   
-  </script>
+function formatarData(campo){
+let valor=campo.value.replace(/\D/g,'');
+
+if(valor.length>2) valor=valor.replace(/^(\d{2})(\d)/,"$1/$2");
+if(valor.length>4) valor=valor.replace(/^(\d{2})\/(\d{2})(\d)/,"$1/$2/$3");
+
+campo.value=valor;
+}
+
+function limitarEntrada(campo){
+if(campo.value.length>7){
+campo.value=campo.value.substring(0,7);
+}
+}
+
+function limparCampos(){
+
+document.getElementById("form").reset();
+
+}
+
+function enviarDados(){
+
+const form=document.getElementById("form");
+
+if(!form.checkValidity()){
+
+document.getElementById("resultado").innerText="Preencha os campos obrigatórios.";
+
+return false;
+
+}
+
+const checkedValues=Array.from(document.querySelectorAll('input[name="solicitacao"]:checked'))
+.map(c=>c.value)
+.join(", ");
+
+const dados={
+
+nte:document.getElementById("nte").value,
+municipio:document.getElementById("municipio").value,
+codigoSec:document.getElementById("codigoSec").value,
+unidadeEscolar:document.getElementById("unidadeEscolar").value,
+nomeDiretor:document.getElementById("nomeDiretor").value,
+cpf:document.getElementById("cpf").value,
+matricula:document.getElementById("matricula").value,
+dataNascimento:document.getElementById("dataNascimento").value,
+dataPublicacao:document.getElementById("dataPublicacao").value,
+emailDiretor:document.getElementById("emailDiretor").value,
+telefoneDiretor:document.getElementById("telefoneDiretor").value,
+emailNte:document.getElementById("emailNte").value,
+telefoneNte:document.getElementById("telefoneNte").value,
+solicitacao:checkedValues,
+observacoes:document.getElementById("observacoes").value
+
+};
+
+document.getElementById("resultado").innerText="Enviando...";
+
+fetch("https://script.google.com/macros/s/AKfycbw_xFzWpfEFv9Wcoxo-cHAK3Z6Dmfr34VfztZAqyHo1ELhWu_GZJSWw4G-SoRLHl0Yh/exec",{
+
+method:"POST",
+
+body:JSON.stringify(dados)
+
+})
+
+.then(res=>res.json())
+
+.then(resposta=>{
+
+document.getElementById("resultado").innerText="Dados enviados com sucesso!";
+
+limparCampos();
+
+setTimeout(()=>{
+
+document.getElementById("resultado").innerText="";
+
+},3000);
+
+})
+
+.catch(erro=>{
+
+document.getElementById("resultado").innerText="Erro ao enviar.";
+
+});
+
+return false;
+
+}
+
+</script>
 </body>
 </html>
