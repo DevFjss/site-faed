@@ -74,8 +74,14 @@
 </head>
 <body>
   <div class="form-container">
-    <h2>Coordenação de Descentralização Financeira – CDF</h2>
+ <div class="titulo-topo">
+<div class="linha1">Superintendência de Planejamento Operacional da Rede Escolar - SUPEC</div>
+<div class="linha2">Diretoria de Recursos Informacionais da Rede Escolar - DRIRE</div>
+<div class="linha3">Coordenação de Descentralização Financeira – CDF</div>
+</div>
+    
     <form id="form" onsubmit="return enviarDados()">
+      
       <div class="form-group">
         <label for="nte" class="campo-obrigatorio" style="font-size: 13px;">NTE:</label>
         <input type="text" name="nte" id="nte" required oninput="limitarEntrada(this)" maxlength="2">
