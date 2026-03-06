@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+  body {
+    background-color: #032240;
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+  }
+  h2 {
+    color: #FFFFFF;
+    text-align: center;
+  }
+  label {
+    font-weight: bold;
+  }
+  .form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #033c66;
+    border-radius: 10px;
+  }
+  .form-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .form-group label {
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    width: 60%;
+    padding: 8px;
+    border: none;
+    background-color: #FFFFFF;
+    color: #0a0404;
+    border-radius: 4px;
+  }
+  .form-group textarea {
+    height: 80px;
+  }
+  .form-group input[type="button"] {
+    background-color: #FFFFFF;
+    color: #0a0404;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    
+  }
+  .form-group input[type="button"]:hover {
+    background-color: #555555;
+  }
+  .form-group .campo-obrigatorio::after {
+    content: ' *';
+    color: red;
+  }
+  #form-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  #resultado {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Coordenação de Descentralização Financeira – CDF</h2>
+    <form id="form" onsubmit="return enviarDados()">
+      <div class="form-group">
+        <label for="nte" class="campo-obrigatorio" style="font-size: 13px;">NTE:</label>
+        <input type="text" name="nte" id="nte" required oninput="limitarEntrada(this)" maxlength="2">
+      </div>
+      <div class="form-group">
+        <label for="municipio" class="campo-obrigatorio" style="font-size: 13px;">Municipio:</label>
+        <input type="text" name="municipio" id="municipio" required>
+      </div>
+      <div class="form-group">
+        <label for="codigoSec" class="campo-obrigatorio" style="font-size: 13px;">Código SEC:</label>
+        <input type="text" name="codigoSec" id="codigoSec" required oninput="limitarEntrada(this)" maxlength="7">
+      </div>
+      <div class="form-group">
+        <label for="unidadeEscolar" class="campo-obrigatorio" style="font-size: 13px;">Nome da Escola:</label>
+        <input type="text" name="unidadeEscolar" id="unidadeEscolar" required>
+      </div>
+      <div class="form-group">
+        <label for="nomeDiretor" class="campo-obrigatorio" style="font-size: 13px;">Nome do Diretor(A):</label>
+        <input type="text" name="nomeDiretor" id="nomeDiretor" required>
+      </div>
+      <div class="form-group">
+        <label for="cpf" class="campo-obrigatorio" style="font-size: 13px;">CPF:</label>
+        <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="000.000.000-00" required oninput="formatarCPF(this)">
+      </div>
+      <div class="form-group">
+        <label for="matricula" class="campo-obrigatorio" style="font-size: 13px;">Matrícula:</label>
+        <input type="text" name="matricula" id="matricula" required>
+      </div>
+      <div class="form-group">
+        <label for="dataNascimento" class="campo-obrigatorio" style="font-size: 13px;">Data de Nasc.:</label>
+        <input type="text" name="dataNascimento" id="dataNascimento" required placeholder="DD/MM/AAAA" oninput="formatarData(this)" maxlength="10">
+      </div>
+      <div class="form-group">
+        <label for="dataPublicacao" class="campo-obrigatorio" style="font-size: 13px;">Data da Publicação:</label>
+        <input type="text" name="dataPublicacao" id="dataPublicacao" required placeholder="DD/MM/AAAA" oninput="formatarData(this)" maxlength="10">
+      </div>
+      <div class="form-group">
+        <label for="emailDiretor" class="campo-obrigatorio" style="font-size: 13px;">E-mail do Diretor(A):</label>
+        <input type="email" name="emailDiretor" id="emailDiretor" required>
+      </div>
+      <div class="form-group">
+        <label for="telefoneDiretor" class="campo-obrigatorio" style="font-size: 13px;">TeL: do Diretor(A):</label>
+        <input type="text" name="telefoneDiretor" id="telefoneDiretor" required placeholder="(Digite o telefone com o DDD)" maxlength="15">
+      </div>
+      
+      <div class="form-group">
+        <label style="font-size: 13px;">SOLICITAÇÃO:</label><br>
+        
+        <div class="checkbox-container">
+          <input type="checkbox" name="solicitacao" id="cartaoPnae" value="CARTÃO PNAE">
+          <label for="cartaoPnae" style="font-size: 13px;">CARTÃO PNAE</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" name="solicitacao" id="cartaoFaed" value="CARTÃO FAED">
+          <label for="cartaoFaed" style="font-size: 13px;">CARTÃO FAED</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" name="solicitacao" id="cartaoFaedManutencao" value="CARTÃO FAED MANUTENÇÃO">
+          <label for="cartaoFaedManutencao" style="font-size: 13px;">CARTÃO FAED MANUTENÇÃO</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="emailNte" class="campo-obrigatorio" style="font-size: 13px;">E-mail do NTE:</label>
+        <input type="email" name="emailNte" id="emailNte" required>
+      </div>
+
+
+      <div class="form-group">
+        <label for="telefoneNte" class="campo-obrigatorio" style="font-size: 13px;">Tel: do NTE:</label>
+        <input type="text" name="telefoneNte" id="telefoneNte" required placeholder="(Digite o telefone com o DDD)" maxlength="15">
+      </div>
+
+      <div class="form-group">
+        <label for="observacoes" style="font-size: 13px;">Observações(Opcional):</label>
+        <textarea name="observacoes" id="observacoes"></textarea>
+      </div>
+      <div id="form-footer">
+        <input type="submit" value="Enviar">
+        <div id="resultado"></div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function formatarCPF(campo) {
+      var valor = campo.value.replace(/\D/g, '');
+      if (valor.length > 3) {
+        valor = valor.replace(/^(\d{3})(\d)/g, "$1.$2");
+      }
+      if (valor.length > 6) {
+        valor = valor.replace(/^(\d{3})\.(\d{3})(\d)/g, "$1.$2.$3");
+      }
+      if (valor.length > 9) {
+        valor = valor.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/g, "$1.$2.$3-$4");
+      }
+      campo.value = valor;
+      }
+
+    function formatarData(campo) {
+      var valor = campo.value.replace(/\D/g, '');
+      if (valor.length > 2) {
+        valor = valor.replace(/^(\d{2})(\d)/g, "$1/$2");
+      }
+      if (valor.length > 4) {
+        valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/g, "$1/$2/$3");
+      }
+      campo.value = valor;
+    }
+  
+    function limitarEntrada(campo) {
+      var valor = campo.value;
+      if (valor.length > 7) {
+        campo.value = valor.substring(0, 7);
+      }
+    }
+    
+     function limparCampos() {
+      document.getElementById("nte").value = '';
+      document.getElementById("municipio").value = '';
+      document.getElementById("codigoSec").value = '';
+      document.getElementById("unidadeEscolar").value = '';
+      document.getElementById("nomeDiretor").value = '';
+      document.getElementById("cpf").value = '';
+      document.getElementById("matricula").value = '';
+      document.getElementById("dataNascimento").value = '';
+      document.getElementById("dataPublicacao").value = '';
+      document.getElementById("emailDiretor").value = '';
+      document.getElementById("telefoneDiretor").value = '';
+      document.getElementById("emailNte").value = '';
+      document.getElementById("telefoneNte").value = '';
+      document.getElementById("observacoes").value = '';
+      var checkboxes = document.querySelectorAll('input[name="solicitacao"]');
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+      });
+    }
+
+    function enviarDados() {
+      var form = document.getElementById("form");
+      if (!form.checkValidity()) {
+        document.getElementById("resultado").innerText = "Por favor, preencha todos os campos obrigatórios.";
+        return false;
+      }
+
+      // Coletar os valores das caixas de seleção marcadas
+const checkedValues = Array.from(document.querySelectorAll('input[name="solicitacao"]:checked'))
+  .map(checkbox => checkbox.value)
+  .join(', '); // Você pode usar outro separador se preferir
+
+// Enviar os dados para o Google Apps Script
+      google.script.run.withSuccessHandler(function(response) {
+        document.getElementById("resultado").innerText = "Dados enviados com sucesso!";
+        setTimeout(function() {
+          document.getElementById("resultado").innerText = ""; // Limpar mensagem após 3 segundos
+        }, 3000);
+        limparCampos(); // Limpar campos após o envio
+      }).salvarDados(
+        document.getElementById("nte").value,
+        document.getElementById("municipio").value,
+        document.getElementById("codigoSec").value,
+        document.getElementById("unidadeEscolar").value,
+        document.getElementById("nomeDiretor").value,
+        document.getElementById("cpf").value,
+        document.getElementById("matricula").value,
+        document.getElementById("dataNascimento").value,
+        document.getElementById("dataPublicacao").value,
+        document.getElementById("emailDiretor").value,
+        document.getElementById("telefoneDiretor").value,
+        document.getElementById("emailNte").value,
+        document.getElementById("telefoneNte").value,
+        checkedValues,
+        document.getElementById("observacoes").value
+      );
+      
+      return false; // Para prevenir o envio do formulário padrão
+    }
+   
+  </script>
+</body>
+</html>
