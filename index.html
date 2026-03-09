@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <title>FAED Informações</title>
 
@@ -18,12 +19,12 @@ color:white;
 }
 
 /* MENU */
+
 .menu{
 background:#021b33;
 padding:15px;
 position:sticky;
 top:0;
-z-index:100;
 }
 
 .menu ul{
@@ -44,12 +45,24 @@ font-weight:bold;
 color:#4da6ff;
 }
 
+
+* PAGINA */
+.links-ajuda{
+text-align:left;
+margin-bottom:10px;
+}
+
+.links-ajuda a{
+color:#ffffff;
+font-size:13px;
+text-decoration:underline;
+}
 /* HEADER */
+
 .header{
 text-align:center;
 padding:40px;
 background:#06345e;
-position:relative;
 }
 
 .header h1{
@@ -57,7 +70,88 @@ margin:0;
 font-size:38px;
 }
 
-/* LOGO */
+/* CONTAINER */
+
+.container{
+padding:40px;
+}
+
+/* FORMULÁRIO */
+
+.form-container{
+max-width:2000px;
+margin:auto;
+background:#0b3d63;
+padding:30px;
+border-radius:10px;
+}
+
+.titulo-topo{
+line-height:1.5;
+margin-bottom:30px;
+}
+
+
+
+.titulo-formulario{
+text-align:center;
+color:#00ffff;
+font-weight:bold;
+margin-top:30px;
+}
+
+.observacao{
+text-align:center;
+color:#ffd700;
+font-weight:bold;
+margin:20px 0;
+}
+
+.form-group{
+margin-bottom:12px;
+display:flex;
+align-items:center;
+}
+
+.form-group label{
+width:200px;
+font-size:13px;
+}
+
+.form-group input,
+.form-group textarea{
+width:55%;
+padding:8px;
+border:none;
+border-radius:4px;
+}
+
+textarea{
+height:80px;
+}
+
+/* CAMPOS OBRIGATORIOS */
+
+.campo-obrigatorio::after{
+content:" *";
+color:white;
+font-weight:bold;
+}
+
+/* CHECKBOX */
+
+.solicitacao-group{
+align-items:flex-start;
+}
+
+/* CHECKBOX */
+
+.checkbox-container{
+margin-left:20px;
+}
+
+    
+/*LOGO*/
 .logo{
 position:absolute;
 right:20px;
@@ -68,169 +162,31 @@ top:10px;
 height:45px;
 }
 
-/* CONTAINER BRANCO - ÁREA ATRÁS DO FORMULÁRIO - AJUSTADO */
-.container{
-max-width:900px;        /* Aumentei a largura máxima */
-width:95%;               /* Largura responsiva */
-margin:30px auto;        /* Centraliza com margem */
-background:white;        /* Fundo branco */
-color:#333;              /* Texto escuro para contraste */
-padding:50px 60px;       /* Aumentei o padding interno */
-border-radius:15px;      /* Bordas mais arredondadas */
-box-shadow:0 15px 40px rgba(0,0,0,0.3); /* Sombra para destacar */
-}
+    
+/* BOTÃO */
 
-/* FORMULÁRIO AZUL */
-.form-container{
-max-width:100%;          /* Ocupa toda largura do container branco */
-margin:auto;
-background:#0b3d63;
-padding:40px;            /* Aumentei o padding */
-border-radius:12px;
-color:white;             /* Texto branco dentro do form */
-}
-
-.titulo-topo{
-line-height:1.6;
-margin-bottom:30px;
-font-size:15px;
-}
-
-.titulo-formulario{
-text-align:center;
-color:#00ffff;
-font-weight:bold;
-margin-top:30px;
-font-size:18px;
-}
-
-.observacao{
-text-align:center;
-color:#ffd700;
-font-weight:bold;
-margin:25px 0;
-font-size:15px;
-}
-
-/* GRUPOS DE FORMULÁRIO - AJUSTADOS PARA FICAREM MAIS LARGOS */
-.form-group{
-margin-bottom:15px;
-display:flex;
-align-items:center;
-flex-wrap:wrap;          /* Para responsividade */
-}
-
-.form-group label{
-width:220px;             /* Aumentei a largura dos labels */
-font-size:14px;
-font-weight:500;
-}
-
-.form-group input,
-.form-group textarea{
-width:60%;               /* Aumentei a largura dos campos */
-padding:10px 12px;       /* Padding maior */
-border:none;
-border-radius:6px;
-font-size:14px;
-}
-
-.form-group textarea{
-height:100px;
-}
-
-/* CAMPOS OBRIGATÓRIOS */
-.campo-obrigatorio::after{
-content:" *";
-color:white;
-font-weight:bold;
-}
-
-/* CHECKBOX - AJUSTADO */
-.solicitacao-group{
-align-items:flex-start;
-}
-
-.checkbox-container{
-margin-left:20px;
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.checkbox-container input[type="checkbox"]{
-width:18px;
-height:18px;
-margin:0;
-}
-
-.checkbox-container label{
-font-size:14px;
-color:white;
-}
-
-/* BOTÃO - AJUSTADO */
 #form-footer{
 text-align:center;
-margin-top:35px;
+margin-top:25px;
 }
 
 #form-footer input{
 background:white;
 color:black;
-padding:14px 80px;       /* Botão maior */
+padding:12px 60px;
 border:none;
-border-radius:12px;
-font-size:18px;          /* Fonte maior */
-font-weight:bold;
+border-radius:10px;
+font-size:16px;
 cursor:pointer;
-transition:all 0.3s;
 }
 
 #form-footer input:hover{
 background:#34c40c;
-color:white;
-transform:scale(1.05);   /* Efeito de crescer */
-box-shadow:0 5px 15px rgba(0,255,0,0.3);
 }
 
 #resultado{
-margin-top:15px;
+margin-top:10px;
 font-weight:bold;
-font-size:16px;
-}
-
-/* RESPONSIVIDADE PARA MOBILE */
-@media (max-width:768px){
-.container{
-    padding:25px;
-    width:92%;
-}
-
-.form-group{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:8px;
-}
-
-.form-group label{
-    width:100%;
-}
-
-.form-group input,
-.form-group textarea{
-    width:100%;
-}
-
-.checkbox-container{
-    margin-left:0;
-    margin-top:5px;
-}
-
-.logo{
-    position:static;
-    margin-bottom:15px;
-}
 }
 
 </style>
@@ -267,9 +223,9 @@ font-size:16px;
 
 <div class="container" id="inicio">
 
-<h2 style="color:#062c4f;">Página Inicial</h2>
+<h2>Página Inicial</h2>
 
-<p style="color:#333;">Bem-vindo ao sistema FAED Informações.</p>
+<p>Bem-vindo ao sistema FAED Informações.</p>
 
 </div>
 
@@ -284,6 +240,8 @@ Diretoria de Recursos Informacionais da Rede Escolar - DRIRE<br>
 Coordenação de Descentralização Financeira – CDF
 
 </div>
+
+
 
 <div class="titulo-formulario">
 
@@ -354,25 +312,22 @@ OBSERVAÇÃO: O TELEFONE DO(A) DIRETOR(A) DEVE SER APENAS CELULAR. NÚMERO DE TE
 <input type="text" id="telefoneDiretor" maxlength="15" oninput="formatarTelefone(this)" required>
 </div>
 
-<div class="form-group solicitacao-group">
+<div class="form-group">
 
 <label>SELECIONE O CARTÃO</label>
 
 <div class="checkbox-container">
     <input type="checkbox" name="solicitacao" id="cartaoPnae" value="CARTÃO PNAE">
-    <label for="cartaoPnae">PNAE</label>
-</div>
-
-<div class="checkbox-container">
+    <label for="cartaoPnae" style="font-size: 13px;">PNAE</label>
+  </div>
+  <div class="checkbox-container">
     <input type="checkbox" name="solicitacao" id="cartaoFaed" value="CARTÃO FAED">
-    <label for="cartaoFaed">FAED</label>
-</div>
-
-<div class="checkbox-container">
+    <label for="cartaoFaed" style="font-size: 13px;">FAED</label>
+  </div>
+  <div class="checkbox-container">
     <input type="checkbox" name="solicitacao" id="cartaoFaedManutencao" value="CARTÃO FAED MANUTENÇÃO">
-    <label for="cartaoFaedManutencao">MANUTENÇÃO</label>
-</div>
-
+    <label for="cartaoFaedManutencao" style="font-size: 13px;">MANUTENÇÃO</label>
+  </div>
 </div>
 
 <div class="form-group">
@@ -404,37 +359,62 @@ OBSERVAÇÃO: O TELEFONE DO(A) DIRETOR(A) DEVE SER APENAS CELULAR. NÚMERO DE TE
 
 </div>
 
+<div class="container" id="cartao">
+
+
+
+</div>
+
 <script>
 
 function formatarCPF(campo){
+
 let valor=campo.value.replace(/\D/g,'');
+
 if(valor.length>3) valor=valor.replace(/^(\d{3})(\d)/,"$1.$2");
 if(valor.length>6) valor=valor.replace(/^(\d{3})\.(\d{3})(\d)/,"$1.$2.$3");
 if(valor.length>9) valor=valor.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/,"$1.$2.$3-$4");
+
 campo.value=valor;
+
 }
 
 function formatarData(campo){
+
 let valor=campo.value.replace(/\D/g,'');
+
 if(valor.length>2) valor=valor.replace(/^(\d{2})(\d)/,"$1/$2");
 if(valor.length>4) valor=valor.replace(/^(\d{2})\/(\d{2})(\d)/,"$1/$2/$3");
+
 campo.value=valor;
+
 }
 
 function formatarTelefone(campo){
+
 let valor=campo.value.replace(/\D/g,'');
-if(valor.length>11) valor=valor.substring(0,11);
-if(valor.length>2) valor=valor.replace(/^(\d{2})(\d)/,"($1) $2");
-if(valor.length>9) valor=valor.replace(/(\d{5})(\d)/,"$1-$2");
+
+if(valor.length>11)
+valor=valor.substring(0,11);
+
+if(valor.length>2)
+valor=valor.replace(/^(\d{2})(\d)/,"($1) $2");
+
+if(valor.length>9)
+valor=valor.replace(/(\d{5})(\d)/,"$1-$2");
+
 campo.value=valor;
+
 }
 
 function enviarDados(){
+
 const checkedValues=Array.from(
 document.querySelectorAll('input[name="solicitacao"]:checked')
 ).map(c=>c.value).join(", ");
 
 const dados={
+
 nte:document.getElementById("nte").value,
 municipio:document.getElementById("municipio").value,
 codigoSec:document.getElementById("codigoSec").value,
@@ -450,27 +430,101 @@ solicitacao:checkedValues,
 emailNte:document.getElementById("emailNte").value,
 telefoneNte:document.getElementById("telefoneNte").value,
 observacoes:document.getElementById("observacoes").value
+
 };
 
 document.getElementById("resultado").innerText="Enviando...";
 
 fetch("https://script.google.com/macros/s/AKfycbyHFaGMz7NvdmABWNubkal8K2wjL_6OfhAtCGNaJcHyGAyHEGE0ybBwWGoRm8PmlwP_/exec",{
+
 method:"POST",
+
 body:JSON.stringify(dados)
+
 })
+
 .then(res=>res.json())
+
 .then(resposta=>{
+
 document.getElementById("resultado").innerText="Dados enviados com sucesso!";
 document.getElementById("form").reset();
+
 })
+
 .catch(erro=>{
+
 document.getElementById("resultado").innerText="Erro ao enviar.";
+
 });
 
 return false;
+
 }
 
 </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Como usar o cartão</title>
+
+<style>
+
+body{
+font-family:Arial, sans-serif;
+background:#0b3d5c; /* azul escuro */
+margin:0;
+padding:30px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:6px;
+}
+
+h1{
+margin-top:0;
+}
+
+ul{
+line-height:1.8;
+}
+
+a{
+color:#1a5fb4;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Como usar o cartão</h1>
+
+<p>Veja abaixo informações importantes sobre o uso do cartão:</p>
+
+<ul>
+<li><a href="#">Como desbloquear o cartão</a></li>
+<li><a href="#">Onde usar o cartão</a></li>
+<li><a href="#">Como consultar saldo</a></li>
+<li><a href="#">O que fazer em caso de perda</a></li>
+</ul>
+
+<br>
+
+<a href="index.html">⬅ Voltar ao formulário</a>
+
+</div>
 
 </body>
 </html>
