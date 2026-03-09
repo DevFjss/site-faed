@@ -5,7 +5,6 @@
 <title>Como usar o cartão</title>
 
 <style>
-
 body{
 font-family:Arial, sans-serif;
 background:#0b3d5c; /* azul escuro */
@@ -33,6 +32,24 @@ a{
 color:#1a5fb4;
 }
 
+/* Estilo para as seções de conteúdo */
+.conteudo-ancora {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    border-left: 4px solid #0b3d5c;
+}
+
+.conteudo-ancora h2 {
+    margin-top: 0;
+    color: #0b3d5c;
+}
+
+/* Scroll suave para a âncora */
+html {
+    scroll-behavior: smooth;
+}
 </style>
 
 </head>
@@ -46,11 +63,59 @@ color:#1a5fb4;
 <p>Veja abaixo informações importantes sobre o uso do cartão:</p>
 
 <ul>
-<li><a href="#">Como desbloquear o cartão</a></li>
-<li><a href="#">Onde usar o cartão</a></li>
-<li><a href="#">Como consultar saldo</a></li>
-<li><a href="#">O que fazer em caso de perda</a></li>
+<li><a href="#desbloquear">Como desbloquear o cartão</a></li>
+<li><a href="#usar">Onde usar o cartão</a></li>
+<li><a href="#saldo">Como consultar saldo</a></li>
+<li><a href="#perda">O que fazer em caso de perda</a></li>
 </ul>
+
+<!-- Seções de conteúdo com âncoras -->
+<div id="desbloquear" class="conteudo-ancora">
+    <h2>Como desbloquear o cartão</h2>
+    <p>Para desbloquear seu cartão, siga estes passos:</p>
+    <ol>
+        <li>Acesse o aplicativo do banco</li>
+        <li>Vá até a seção "Cartões"</li>
+        <li>Selecione a opção "Desbloquear cartão"</li>
+        <li>Siga as instruções na tela</li>
+        <li>Pronto! Seu cartão está desbloqueado para uso</li>
+    </ol>
+</div>
+
+<div id="usar" class="conteudo-ancora">
+    <h2>Onde usar o cartão</h2>
+    <p>Seu cartão pode ser usado em diversos estabelecimentos:</p>
+    <ul>
+        <li>Supermercados e padarias</li>
+        <li>Lojas físicas e online</li>
+        <li>Restaurantes e lanchonetes</li>
+        <li>Farmácias e drogarias</li>
+        <li>Postos de combustível</li>
+        <li>Compras internacionais (onde a bandeira for aceita)</li>
+    </ul>
+</div>
+
+<div id="saldo" class="conteudo-ancora">
+    <h2>Como consultar saldo</h2>
+    <p>Você pode consultar seu saldo de várias formas:</p>
+    <ul>
+        <li><strong>Aplicativo:</strong> Acesse o app do banco e veja seu saldo em tempo real</li>
+        <li><strong>Internet Banking:</strong> Entre no site do banco pelo computador</li>
+        <li><strong>Caixas eletrônicos:</strong> Insira o cartão e selecione "Consultar saldo"</li>
+        <li><strong>Central de atendimento:</strong> Ligue para o número no verso do cartão</li>
+    </ul>
+</div>
+
+<div id="perda" class="conteudo-ancora">
+    <h2>O que fazer em caso de perda</h2>
+    <p>Em caso de perda ou roubo do cartão, siga estes procedimentos:</p>
+    <ol>
+        <li><strong>Bloqueio imediato:</strong> Ligue para a central de atendimento 24h ou bloqueie pelo app</li>
+        <li><strong>Registro de ocorrência:</strong> Faça um boletim de ocorrência online ou em uma delegacia</li>
+        <li><strong>Solicitar segunda via:</strong> Peça um novo cartão pelo app ou site do banco</li>
+        <li><strong>Acompanhar entregas:</strong> Acompanhe o status da entrega do novo cartão</li>
+    </ol>
+</div>
 
 <br>
 
