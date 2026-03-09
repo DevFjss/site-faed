@@ -20,13 +20,12 @@
 
         /* Menu Superior */
         .menu {
-            background: rgba(255, 255, 255, 0.95);
+            background: #021b33; /* Azul escuro sólido */
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
         }
 
         .menu ul {
@@ -38,7 +37,7 @@
         }
 
         .menu a {
-            color: #2c3e50;
+            color: white;
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
@@ -48,8 +47,8 @@
         }
 
         .menu a:hover {
-            color: #3498db;
-            background: rgba(52, 152, 219, 0.1);
+            color: #4da6ff;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Header com logo */
@@ -83,7 +82,7 @@
         }
 
         .logo img {
-            height: 150px;
+            height: 100px; /* Aumentado de 70px para 100px */
             width: auto;
             filter: brightness(0) invert(1);
         }
@@ -359,7 +358,7 @@
             text-align: center;
             padding: 1.5rem;
             margin-top: 3rem;
-            font-size: 0.9rem;
+            font-size: 1rem; /* Aumentado para dar destaque */
         }
 
         /* Responsividade */
@@ -398,6 +397,10 @@
             .header-text h1 {
                 font-size: 1.8rem;
             }
+            
+            .logo img {
+                height: 80px; /* Reduz um pouco em mobile, mas ainda maior que antes */
+            }
         }
 
         /* Animações */
@@ -434,7 +437,7 @@
         <div class="header-content">
             <div class="header-text">
                 <h1>FAED INFORMAÇÕES</h1>
-                <p>Sistema de Informações e Cadastro</p>
+                <p>Sistema de Cadastro para Diretores Escolares</p>
             </div>
             <div class="logo">
                 <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/logo.png" alt="Logo FAED">
@@ -585,28 +588,11 @@
                     <li><a href="#">❓ Perguntas frequentes</a></li>
                 </ul>
             </div>
-
-            <div class="info-card">
-                <h3>🌍 Idiomas</h3>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
-                    <a href="#" style="font-size: 0.85rem;">🇧🇷 Português</a>
-                    <a href="#" style="font-size: 0.85rem;">🇺🇸 Inglês</a>
-                    <a href="#" style="font-size: 0.85rem;">🇮🇹 Italiano</a>
-                    <a href="#" style="font-size: 0.85rem;">🇯🇵 Japonês</a>
-                    <a href="#" style="font-size: 0.85rem;">🇵🇱 Polonês</a>
-                    <a href="#" style="font-size: 0.85rem;">🇷🇺 Russo</a>
-                    <a href="#" style="font-size: 0.85rem;">🇹🇷 Turco</a>
-                    <a href="#" style="font-size: 0.85rem;">🇨🇳 Chinês</a>
-                    <a href="#" style="font-size: 0.85rem;">🇰🇷 Coreano</a>
-                    <a href="#" style="font-size: 0.85rem;">🇸🇦 Árabe</a>
-                </div>
-            </div>
         </div>
     </div>
 
     <footer class="footer">
-        <p>© 2024 FAED Informações - Todos os direitos reservados</p>
-        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Sistema de cadastro para diretores escolares</p>
+        <p>© 2026 FAED Informações</p>
     </footer>
 
     <script>
