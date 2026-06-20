@@ -20,7 +20,7 @@
 
         /* Menu Superior */
         .menu {
-            background: #021b33; /* Azul escuro sólido */
+            background: #021b33;
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
@@ -46,10 +46,10 @@
             border-radius: 4px;
         }
 
-       .menu a:hover {
-    color: #34c40c;        /* Verde claro */
-    background: rgba(52, 196, 12, 0.1);  /* Verde com transparência */
-}
+        .menu a:hover {
+            color: #34c40c;
+            background: rgba(52, 196, 12, 0.1);
+        }
 
         /* Header com logo */
         .header {
@@ -82,9 +82,8 @@
         }
 
         .logo img {
-            height: 250px; /* ou 150px, 180px... */
+            height: 250px;
             width: auto;
-            
         }
 
         /* Container principal */
@@ -125,14 +124,14 @@
         }
 
         .observacao {
-    background: #e6f3ff;  /* Fundo azul bem clarinho */
-    color: #0066cc;       /* Azul médio claro */
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-    font-size: 1rem;
-    border-left: 4px solid #3399ff;  /* Azul mais vibrante na borda */
-}
+            background: #e6f3ff;
+            color: #0066cc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 1rem;
+            border-left: 4px solid #3399ff;
+        }
 
         .form-container {
             padding: 2rem;
@@ -154,14 +153,14 @@
             grid-column: span 2;
         }
 
-     .form-group label {
-    font-size: 0.9rem;
-    font-weight: 700;  /* Negrito mais forte (opcional, pode manter 600) */
-    color: #003366;     /* Azul meio escuro (dark blue) */
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #003366;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
         .campo-obrigatorio::after {
             content: "*";
             color: #dc3545;
@@ -357,7 +356,7 @@
             text-align: center;
             padding: 1.5rem;
             margin-top: 3rem;
-            font-size: 1rem; /* Aumentado para dar destaque */
+            font-size: 1rem;
         }
 
         /* Responsividade */
@@ -398,7 +397,7 @@
             }
             
             .logo img {
-                height: 80px; /* Reduz um pouco em mobile, mas ainda maior que antes */
+                height: 80px;
             }
         }
 
@@ -421,8 +420,6 @@
         .sidebar {
             animation: fadeIn 0.8s ease-out;
         }
-
-       
     </style>
 </head>
 <body>
@@ -441,12 +438,11 @@
                 <p>Sistema de Cadastro para Diretores Escolares</p>
             </div>
             <div class="logo">
-                <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/logo.png">
+                <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/logo.png" alt="Logo FAED">
             </div>
         </div>
     </div>
 
-       
     <div class="main-container">
         <div class="form-section" id="formulario">
             <div class="form-header">
@@ -458,8 +454,7 @@
                 <div class="observacao">
                     <strong>⚠️ OBSERVAÇÃO IMPORTANTE:</strong> O TELEFONE DO(A) DIRETOR(A) DEVE SER APENAS CELULAR. NÚMERO DE TELEFONE FIXO NÃO É ACEITO.
                 </div>
-            
-</div>
+            </div>
             <div class="form-container">
                 <form id="form" onsubmit="return enviarDados()">
                     <div class="form-grid">
@@ -528,6 +523,12 @@
                             <input type="text" id="telefoneNte" maxlength="15" placeholder="(00) 00000-0000" oninput="formatarTelefone(this)" required>
                         </div>
 
+                        <!-- NOVO CAMPO CEP ADICIONADO AQUI -->
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">CEP DA ESCOLA</label>
+                            <input type="text" id="cep" maxlength="9" placeholder="00000-000" oninput="formatarCEP(this)" required>
+                        </div>
+
                         <div class="form-group full-width">
                             <label>SELECIONE O CARTÃO</label>
                             <div class="checkbox-group">
@@ -580,64 +581,58 @@
             </div>
 
             <div class="info-card" id="cartao">
-    <h3>💳 Como usar o cartão</h3>
-    <ul>
-        <li><a href="usarcartao.html#desbloquear">🔓 Como desbloquear o cartão</a></li>
-        <li><a href="usarcartao.html#usar">📍 Onde usar o cartão</a></li>
-        <li><a href="usarcartao.html#consulta">💰 Consulta no BB Digital</a></li>
-        <li><a href="usarcartao.html#perda">⚠️ O que fazer em caso de perda</a></li>
-        <li><a href="usarcartao.html#consulta">📱 Consulta de limites</a></li>
-        <li><a href="usarcartao.html#perda">❓ Perguntas frequentes</a></li>
-    </ul>
-<!-- Cards dos cartões -->
-<div style="display: flex; justify-content: space-between; gap: 15px; margin-top: 20px; text-align: center;">
-    
-    <!-- Cartão PNAE -->
-    <div style="flex: 1; min-width: 0;">
-        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgPnae.png" alt="Cartão PNAE" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">PNAE</p>
-    </div>
-    
-    <!-- Cartão FAED -->
-    <div style="flex: 1; min-width: 0;">
-        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgFaed.png" alt="Cartão FAED" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">FAED</p>
-    </div>
-    
-    <!-- Cartão MANUTENÇÃO -->
-    <div style="flex: 1; min-width: 0;">
-        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgManutencao.png" alt="Cartão MANUTENÇÃO" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">MANUTENÇÃO</p>
-    </div>
-</div>
+                <h3>💳 Como usar o cartão</h3>
+                <ul>
+                    <li><a href="usarcartao.html#desbloquear">🔓 Como desbloquear o cartão</a></li>
+                    <li><a href="usarcartao.html#usar">📍 Onde usar o cartão</a></li>
+                    <li><a href="usarcartao.html#consulta">💰 Consulta no BB Digital</a></li>
+                    <li><a href="usarcartao.html#perda">⚠️ O que fazer em caso de perda</a></li>
+                    <li><a href="usarcartao.html#consulta">📱 Consulta de limites</a></li>
+                    <li><a href="usarcartao.html#perda">❓ Perguntas frequentes</a></li>
+                </ul>
+                <!-- Cards dos cartões -->
+                <div style="display: flex; justify-content: space-between; gap: 15px; margin-top: 20px; text-align: center;">
+                    
+                    <div style="flex: 1; min-width: 0;">
+                        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgPnae.png" alt="Cartão PNAE" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">PNAE</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 0;">
+                        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgFaed.png" alt="Cartão FAED" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">FAED</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 0;">
+                        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgManutencao.png" alt="Cartão MANUTENÇÃO" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">MANUTENÇÃO</p>
+                    </div>
+                </div>
 
-<!-- ⚠️ OBSERVAÇÃO ABAIXO DOS CARTÕES -->
-<div style="margin-top: 20px; padding-top: 10px; border-top: 1px dashed #3498db; text-align: center;">
-    <p style="color: #0066cc; font-weight: bold; font-size: 14px; margin: 0;">
-        ⚠️ <span style="background-color: #e6f3ff; padding: 4px 8px; border-radius: 4px;">Obs: coloque uma marcação no cartão Faed.</span>
-    </p>
-</div>
-</div>
-<!-- Card de Atenção - Senhas 2026 -->
-<div class="info-card" style="border-left: 4px solid #ff9800; background-color: #fff8e7;">
-    <h3 style="color: #e65100; display: flex; align-items: center; gap: 8px;">
-        ⚠️ ATENÇÃO!
-    </h3>
-    <div style="font-size: 0.95rem; line-height: 1.5; color: #333;">
-        <p style="margin: 0 0 10px 0;">
-            Os novos portadores dos cartões <strong>PNAE, FAED e Manutenção em 2026</strong>, não precisarão comparecer a uma agência física para gerar as senhas.
-        </p>
-        <p style="margin: 0 0 10px 0;">
-            É necessário aguardar o recebimento do envelope enviado aos portadores dos cartões. Nele, haverá as instruções para criação da senha, além de informações adicionais disponíveis no portal do Banco do Brasil.
-        </p>
-        <p style="margin: 0; padding: 10px; background-color: #ffebcc; border-radius: 6px; border-left: 3px solid #ff9800;">
-            <strong>Os portadores dos cartões cadastrados em 2025</strong>, que ainda não geraram as senhas, precisam comparecer a uma agência do Banco do Brasil para as providencias devidas.
-        </p>
-    </div>
-</div>
+                <div style="margin-top: 20px; padding-top: 10px; border-top: 1px dashed #3498db; text-align: center;">
+                    <p style="color: #0066cc; font-weight: bold; font-size: 14px; margin: 0;">
+                        ⚠️ <span style="background-color: #e6f3ff; padding: 4px 8px; border-radius: 4px;">Obs: coloque uma marcação no cartão Faed.</span>
+                    </p>
+                </div>
+            </div>
 
-            
-</div>
+            <!-- Card de Atenção - Senhas 2026 -->
+            <div class="info-card" style="border-left: 4px solid #ff9800; background-color: #fff8e7;">
+                <h3 style="color: #e65100; display: flex; align-items: center; gap: 8px;">
+                    ⚠️ ATENÇÃO!
+                </h3>
+                <div style="font-size: 0.95rem; line-height: 1.5; color: #333;">
+                    <p style="margin: 0 0 10px 0;">
+                        Os novos portadores dos cartões <strong>PNAE, FAED e Manutenção em 2026</strong>, não precisarão comparecer a uma agência física para gerar as senhas.
+                    </p>
+                    <p style="margin: 0 0 10px 0;">
+                        É necessário aguardar o recebimento do envelope enviado aos portadores dos cartões. Nele, haverá as instruções para criação da senha, além de informações adicionais disponíveis no portal do Banco do Brasil.
+                    </p>
+                    <p style="margin: 0; padding: 10px; background-color: #ffebcc; border-radius: 6px; border-left: 3px solid #ff9800;">
+                        <strong>Os portadores dos cartões cadastrados em 2025</strong>, que ainda não geraram as senhas, precisam comparecer a uma agência do Banco do Brasil para as providencias devidas.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -670,6 +665,15 @@
             campo.value = valor;
         }
 
+        // Função para formatar o campo CEP
+        function formatarCEP(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length > 5) {
+                valor = valor.replace(/^(\d{5})(\d)/, "$1-$2");
+            }
+            campo.value = valor;
+        }
+
         function enviarDados() {
             const checkedValues = Array.from(
                 document.querySelectorAll('input[name="solicitacao"]:checked')
@@ -690,6 +694,7 @@
                 solicitacao: checkedValues,
                 emailNte: document.getElementById("emailNte").value,
                 telefoneNte: document.getElementById("telefoneNte").value,
+                cep: document.getElementById("cep").value,  // Adicionando o CEP aos dados
                 observacoes: document.getElementById("observacoes").value
             };
 
