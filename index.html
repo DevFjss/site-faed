@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAED Informações - Sistema de Cadastro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Menu Superior */
+        .menu {
+            background: #021b33;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .menu a:hover {
+            color: #34c40c;
+            background: rgba(52, 196, 12, 0.1);
+        }
+
+        /* Header com logo */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem 2rem;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .header-text p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .logo img {
+            height: 250px;
+            width: auto;
+        }
+
+        /* Container principal */
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        /* Área do formulário */
+        .form-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .form-header h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-header p {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .observacao {
+            background: #e6f3ff;
+            color: #0066cc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 1rem;
+            border-left: 4px solid #3399ff;
+        }
+
+        .form-container {
+            padding: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #003366;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .campo-obrigatorio::after {
+            content: "*";
+            color: #dc3545;
+            margin-left: 4px;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover,
+        .form-group select:hover {
+            background: white;
+            border-color: #adb5bd;
+        }
+
+        /* Checkbox group */
+        .checkbox-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 0.5rem 0;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #3498db;
+        }
+
+        .checkbox-container label {
+            font-size: 0.95rem;
+            color: #495057;
+            cursor: pointer;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Botão de envio */
+        .form-footer {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #34495e 0%, #2980b9 100%);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        #resultado {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+
+        .info-card a:hover {
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-icon {
+            width: 35px;
+            height: 35px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-details strong {
+            display: block;
+            color: #2c3e50;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details span {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Rodapé */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 1rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo img {
+                height: 80px;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-section {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .sidebar {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <ul>
+            <li><a href="#inicio">Página Inicial</a></li>
+            <li><a href="#formulario">Formulário de Cadastro</a></li>
+            <li><a href="#cartao">Como usar o Cartão</a></li>
+        </ul>
+    </nav>
+
+    <div class="header" id="inicio">
+        <div class="header-content">
+            <div class="header-text">
+                <h1>FAED INFORMAÇÕES</h1>
+                <p>Sistema de Cadastro para Diretores Escolares</p>
+            </div>
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/logo.png" alt="Logo FAED">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="form-section" id="formulario">
+            <div class="form-header">
+                <h2>Formulário de Cadastro</h2>
+                <p>Superintendência de Planejamento Operacional da Rede Escolar - SUPEC<br>
+                Diretoria de Recursos Informacionais da Rede Escolar - DRIRE<br>
+                Coordenação de Descentralização Financeira – CDF</p>
+                
+                <div class="observacao">
+                    <strong>⚠️ OBSERVAÇÃO IMPORTANTE:</strong> O TELEFONE DO(A) DIRETOR(A) DEVE SER APENAS CELULAR. NÚMERO DE TELEFONE FIXO NÃO É ACEITO.
+                </div>
+            </div>
+            <div class="form-container">
+                <form id="form" onsubmit="enviarDados(event); return false;" novalidate>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">NTE</label>
+                            <input type="text" id="nte" maxlength="2" placeholder="Ex: 01" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Município</label>
+                            <input type="text" id="municipio" placeholder="Nome do município" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Código SEC</label>
+                            <input type="text" id="codigoSec" maxlength="7" placeholder="0000000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Nome da Escola</label>
+                            <input type="text" id="unidadeEscolar" placeholder="Nome completo da escola" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Nome do Diretor(a)</label>
+                            <input type="text" id="nomeDiretor" placeholder="Nome completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">CPF</label>
+                            <input type="text" id="cpf" maxlength="14" placeholder="000.000.000-00" oninput="formatarCPF(this)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Matrícula</label>
+                            <input type="text" id="matricula" placeholder="Número da matrícula" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Data de Nascimento</label>
+                            <input type="text" id="dataNascimento" maxlength="10" placeholder="DD/MM/AAAA" oninput="formatarData(this)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Data da Publicação</label>
+                            <input type="text" id="dataPublicacao" maxlength="10" placeholder="DD/MM/AAAA" oninput="formatarData(this)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">E-mail do Diretor</label>
+                            <input type="email" id="emailDiretor" placeholder="email@exemplo.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Tel do Diretor</label>
+                            <input type="text" id="telefoneDiretor" maxlength="15" placeholder="(00) 00000-0000" oninput="formatarTelefone(this)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">E-mail do NTE</label>
+                            <input type="email" id="emailNte" placeholder="nte@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">Tel do NTE</label>
+                            <input type="text" id="telefoneNte" maxlength="15" placeholder="(00) 00000-0000" oninput="formatarTelefone(this)" required>
+                        </div>
+
+                        <!-- NOVO CAMPO CEP ADICIONADO AQUI -->
+                        <div class="form-group">
+                            <label class="campo-obrigatorio">CEP DA ESCOLA</label>
+                            <input type="text" id="cep" maxlength="9" placeholder="00000-000" oninput="formatarCEP(this)" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>SELECIONE O CARTÃO</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="solicitacao" id="cartaoPnae" value="CARTÃO PNAE">
+                                    <label for="cartaoPnae">PNAE</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="solicitacao" id="cartaoFaed" value="CARTÃO FAED">
+                                    <label for="cartaoFaed">FAED</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="solicitacao" id="cartaoFaedManutencao" value="CARTÃO MANUTENÇÃO">
+                                    <label for="cartaoFaedManutencao">MANUTENÇÃO</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Observações</label>
+                            <textarea id="observacoes" placeholder="Informações adicionais (opcional)"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="submit" class="btn-submit">Enviar Cadastro</button>
+                        <div id="resultado"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="info-card">
+                <h3>📞 Contatos Rápidos</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <strong>E-mail</strong>
+                        <span>faedinformacao@gmail.com</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <strong>Telefone</strong>
+                        <span>(71) 3115-9145 / 0228 / 1372</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card" id="cartao">
+                <h3>💳 Como usar o cartão</h3>
+                <ul>
+                    <li><a href="usarcartao.html#desbloquear">🔓 Como desbloquear o cartão</a></li>
+                    <li><a href="usarcartao.html#usar">📍 Onde usar o cartão</a></li>
+                    <li><a href="usarcartao.html#consulta">💰 Consulta no BB Digital</a></li>
+                    <li><a href="usarcartao.html#perda">⚠️ O que fazer em caso de perda</a></li>
+                    <li><a href="usarcartao.html#consulta">📱 Consulta de limites</a></li>
+                    <li><a href="usarcartao.html#perda">❓ Perguntas frequentes</a></li>
+                </ul>
+                <!-- Cards dos cartões -->
+                <div style="display: flex; justify-content: space-between; gap: 15px; margin-top: 20px; text-align: center;">
+                    
+                    <div style="flex: 1; min-width: 0;">
+                        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgPnae.png" alt="Cartão PNAE" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">PNAE</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 0;">
+                        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgFaed.png" alt="Cartão FAED" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">FAED</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 0;">
+                        <img src="https://raw.githubusercontent.com/DevFjss/site-faed/main/imgManutencao.png" alt="Cartão MANUTENÇÃO" style="width: 100%; max-width: 160px; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <p style="margin-top: 8px; font-weight: bold; font-size: 13px; color: #2c3e50;">MANUTENÇÃO</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; padding-top: 10px; border-top: 1px dashed #3498db; text-align: center;">
+                    <p style="color: #0066cc; font-weight: bold; font-size: 14px; margin: 0;">
+                        ⚠️ <span style="background-color: #e6f3ff; padding: 4px 8px; border-radius: 4px;">Obs: coloque uma marcação no cartão Faed.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card de Atenção - Senhas 2026 -->
+            <div class="info-card" style="border-left: 4px solid #ff9800; background-color: #fff8e7;">
+                <h3 style="color: #e65100; display: flex; align-items: center; gap: 8px;">
+                    ⚠️ ATENÇÃO!
+                </h3>
+                <div style="font-size: 0.95rem; line-height: 1.5; color: #333;">
+                    <p style="margin: 0 0 10px 0;">
+                        Os novos portadores dos cartões <strong>PNAE, FAED e Manutenção em 2026</strong>, não precisarão comparecer a uma agência física para gerar as senhas.
+                    </p>
+                    <p style="margin: 0 0 10px 0;">
+                        É necessário aguardar o recebimento do envelope enviado aos portadores dos cartões. Nele, haverá as instruções para criação da senha, além de informações adicionais disponíveis no portal do Banco do Brasil.
+                    </p>
+                    <p style="margin: 0; padding: 10px; background-color: #ffebcc; border-radius: 6px; border-left: 3px solid #ff9800;">
+                        <strong>Os portadores dos cartões cadastrados em 2025</strong>, que ainda não geraram as senhas, precisam comparecer a uma agência do Banco do Brasil para as providencias devidas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 FAED Informações</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">Sistema de cadastro para diretores escolares</p>
+    </footer>
+
+    <script>
+        function formatarCPF(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length > 3) valor = valor.replace(/^(\d{3})(\d)/, "$1.$2");
+            if (valor.length > 6) valor = valor.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+            if (valor.length > 9) valor = valor.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+            campo.value = valor;
+        }
+
+        function formatarData(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length > 2) valor = valor.replace(/^(\d{2})(\d)/, "$1/$2");
+            if (valor.length > 4) valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/, "$1/$2/$3");
+            campo.value = valor;
+        }
+
+        function formatarTelefone(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length > 11) valor = valor.substring(0, 11);
+            if (valor.length > 2) valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
+            if (valor.length > 9) valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+            campo.value = valor;
+        }
+
+        // Função para formatar o campo CEP
+        function formatarCEP(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length > 5) {
+                valor = valor.replace(/^(\d{5})(\d)/, "$1-$2");
+            }
+            campo.value = valor;
+        }
+
+        // ===== Configuração do Supabase =====
+        const SUPABASE_URL = "https://vsubudeifwpdzxwoayij.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_vrBHcx43pZg3MWhYv8Wl-w_hd09KwTP";
+        const SUPABASE_TABELA = "solicitacoes_cartao";
+
+        // Converte DD/MM/AAAA para AAAA-MM-DD (formato aceito pelo banco)
+        function dataParaISO(texto) {
+            const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec((texto || "").trim());
+            return m ? `${m[3]}-${m[2]}-${m[1]}` : null;
+        }
+
+        let enviando = false;
+
+        function mostrarMensagem(texto, tipo) {
+            const resultado = document.getElementById("resultado");
+            const estilos = {
+                sucesso: "background:#d4edda; border:2px solid #000; color:#000;",
+                erro: "background:#f8d7da; border:2px solid #000; color:#000;",
+                info: "background:#e6f3ff; border:2px solid #3498db; color:#000;"
+            };
+            resultado.style.cssText = "margin-top:1rem; padding:1.2rem; border-radius:10px; text-align:center; font-weight:900; font-size:1.3rem; " + estilos[tipo];
+            resultado.textContent = texto;
+        }
+
+        async function enviarDados(event) {
+            if (event) event.preventDefault();
+            if (enviando) return false;
+
+            const formEl = document.getElementById("form");
+            if (!formEl.checkValidity()) {
+                formEl.reportValidity();
+                return false;
+            }
+
+            const checkedValues = Array.from(
+                document.querySelectorAll('input[name="solicitacao"]:checked')
+            ).map(c => c.value).join(", ");
+
+            const resultado = document.getElementById("resultado");
+
+            const dataNascimento = dataParaISO(document.getElementById("dataNascimento").value);
+            const dataPublicacao = dataParaISO(document.getElementById("dataPublicacao").value);
+
+            if (!dataNascimento || !dataPublicacao) {
+                mostrarMensagem("Data inválida. Use o formato DD/MM/AAAA.", "erro");
+                return false;
+            }
+
+            // Chaves = nomes das colunas da tabela (criado_em e data_pedido ficam por conta do banco)
+            const dados = {
+                nte: document.getElementById("nte").value.trim(),
+                municipio: document.getElementById("municipio").value.trim(),
+                codigo_sec: document.getElementById("codigoSec").value.trim(),
+                nome_escola: document.getElementById("unidadeEscolar").value.trim(),
+                nome_diretor: document.getElementById("nomeDiretor").value.trim(),
+                cpf: document.getElementById("cpf").value.trim(),
+                matricula: document.getElementById("matricula").value.trim(),
+                data_nascimento: dataNascimento,
+                data_publicacao: dataPublicacao,
+                email_diretor: document.getElementById("emailDiretor").value.trim(),
+                telefone_diretor: document.getElementById("telefoneDiretor").value.trim(),
+                email_nte: document.getElementById("emailNte").value.trim(),
+                telefone_nte: document.getElementById("telefoneNte").value.trim(),
+                cep: document.getElementById("cep").value.trim(),
+                marque_qual_solicitacao_do_cadastro: checkedValues,
+                observacoes: document.getElementById("observacoes").value.trim()
+            };
+
+            enviando = true;
+            mostrarMensagem("Enviando...", "info");
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABELA}`, {
+                    method: "POST",
+                    headers: {
+                        "apikey": SUPABASE_KEY,
+                        "Content-Type": "application/json",
+                        "Prefer": "return=minimal"
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                if (!res.ok) {
+                    const detalhe = await res.text();
+                    throw new Error(detalhe || res.statusText);
+                }
+
+                formEl.reset();
+                mostrarMensagem("DADOS ENVIADOS COM SUCESSO!", "sucesso");
+            } catch (erro) {
+                console.error("Erro ao enviar para o Supabase:", erro);
+                mostrarMensagem("ERRO AO ENVIAR. Verifique os dados e tente novamente.", "erro");
+            } finally {
+                enviando = false;
+            }
+
+            return false;
+        }
+
+        // Smooth scroll para os links do menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
